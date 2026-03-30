@@ -47,3 +47,11 @@ export interface GymnastDetail extends Gymnast {
   scores: Score[];
   scores_by_level: { [level: number]: Score[] };
 }
+
+export interface SearchResult {
+  external_id: string;
+  name: string;
+  team: string | null;
+  source: string;
+  url: string;
+}

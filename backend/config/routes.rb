@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :gymnasts, only: [:index, :show]
       resources :competitions, only: [:index, :show]
 
+      get "search", to: "scraper#search"
       post "scrape", to: "scraper#create"
       post "gymnasts/:id/refresh", to: "scraper#refresh", as: :refresh_gymnast
       post "gymnasts/:id/link_mso", to: "scraper#link_mso", as: :link_mso_gymnast

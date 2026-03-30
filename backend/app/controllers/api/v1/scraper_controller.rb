@@ -1,4 +1,17 @@
 class Api::V1::ScraperController < ApplicationController
+  def search
+    query = params[:q].to_s.strip
+    
+    if query.length < 2
+      return render json: { error: "Search query must be at least 2 characters" }, status: :unprocessable_entity
+    end
+
+    searcher = MyMeetScoresSearch.new(query)
+    results = searcher.search
+
+    render json: { results: results }
+  end
+
   def create
     source = detect_source(params[:url])
     external_id = extract_id_from_url(params[:url], source) || params[:external_id]

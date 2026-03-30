@@ -1,4 +1,4 @@
-import { Gymnast, GymnastDetail } from '../types';
+import { Gymnast, GymnastDetail, SearchResult } from '../types';
 
 const API_BASE = '/api/v1';
 
@@ -42,4 +42,14 @@ export async function refreshGymnast(id: number): Promise<{ gymnast: Gymnast }> 
     throw new Error(error.error || 'Failed to refresh gymnast');
   }
   return response.json();
+}
+
+export async function searchGymnasts(query: string): Promise<SearchResult[]> {
+  const response = await fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}`);
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || 'Search failed');
+  }
+  const data = await response.json();
+  return data.results;
 }
