@@ -1,0 +1,21 @@
+# Backend
+backend/db/*.sqlite3
+backend/db/*.sqlite3-*
+backend/log/*
+backend/tmp/*
+backend/storage/*
+backend/.bundle
+backend/vendor/bundle
+backend/config/master.key
+backend/config/credentials/*.key
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.npmrc
+
+# General
+.DS_Store
+*.log
+.env
+.env.local
