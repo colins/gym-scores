@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    environment:
+      - RAILS_ENV=development
+    volumes:
+      - ./backend:/rails
+      - bundle_cache:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    command: bin/rails server -b 0.0.0.0
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - backend
+
+volumes:
+  bundle_cache:

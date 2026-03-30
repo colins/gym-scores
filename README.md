@@ -19,13 +19,40 @@ A web application for tracking gymnastics competition scores. Scrapes data from 
 
 ## Getting Started
 
-### Prerequisites
+### Option 1: Docker (Recommended)
+
+The easiest way to run the app is with Docker Compose.
+
+**Production build:**
+
+```bash
+# Set your Rails master key (check backend/config/master.key)
+export RAILS_MASTER_KEY=<your-master-key>
+
+# Build and run
+docker compose up --build
+```
+
+The app will be available at http://localhost
+
+**Development mode:**
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+- Frontend: http://localhost:5173 (with hot reload)
+- Backend: http://localhost:3000 (with hot reload)
+
+### Option 2: Local Development
+
+#### Prerequisites
 
 - Ruby 3.3+
 - Node.js 20+
 - npm
 
-### Backend Setup
+#### Backend Setup
 
 ```bash
 cd backend
@@ -34,7 +61,7 @@ bin/rails db:migrate
 bin/rails server
 ```
 
-### Frontend Setup
+#### Frontend Setup
 
 ```bash
 cd frontend
